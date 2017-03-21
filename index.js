@@ -95,26 +95,30 @@ function insertionSort(array, stepCallback) {
 
     function next() {
 
-        if (i === length && j < 1) {
+        if (i > length) {
             return
         }
 
         let prevJ = j;
+        let changed = false;
 
         if (array[j] > array[j - 1]) {
 
+            // swap can be simplified
             [array[j], array[j - 1]] = [array[j - 1], array[j]]
 
+            changed = true
+
             if (--j < 1) {
-                j = i++
+                j = ++i
             }
 
         } else {
 
-            j = i++
+            j = ++i
         }
 
-        stepCallback ? stepCallback(next, prevJ, prevJ + 1, true) : setTimeout(next)
+        stepCallback ? stepCallback(next, prevJ, prevJ - 1, changed): setTimeout(next)
     }
 
     next()
