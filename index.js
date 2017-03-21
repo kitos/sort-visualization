@@ -46,7 +46,7 @@ function initSorting(canvasId, sortingFunction) {
                 drawLine(b, lines[b])
             }
 
-            setTimeout(done, 0)
+            done()
         })
     }
 }
@@ -81,7 +81,7 @@ function bubbleSort(array, stepCallback) {
             }
         }
 
-        stepCallback ? stepCallback(next, prevI, prevI + 1, changed) : setTimeout(next)
+        setTimeout(stepCallback ? stepCallback.bind(null, next, prevI, prevI + 1, changed) : next)
     }
 
     next()
@@ -118,7 +118,7 @@ function insertionSort(array, stepCallback) {
             j = ++i
         }
 
-        stepCallback ? stepCallback(next, prevJ, prevJ - 1, changed): setTimeout(next)
+        setTimeout(stepCallback ? stepCallback.bind(null, next, prevJ, prevJ - 1, changed): next)
     }
 
     next()
