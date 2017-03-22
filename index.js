@@ -1,3 +1,6 @@
+var bubbleSort = require('./algorithms/bubble_sort');
+var insertionSort = require('./algorithms/insert_sort');
+
 const CANVAS_SIZE = 400;
 
 initSorting('Bubble sort', bubbleSort)
@@ -60,79 +63,6 @@ function initSorting(sortingTitle, sortingFunction) {
             done()
         })
     }
-}
-
-function bubbleSort(array, stepCallback) {
-
-    let i = 0
-    let length = array.length
-    let changed = false
-
-    function next() {
-
-        if (i === length) {
-            return
-        }
-
-        if (array[i] > array[i + 1]) {
-
-            [array[i], array[i + 1]] = [array[i + 1], array[i]]
-
-            changed = true
-        }
-
-        let prevI = i;
-
-        if (++i === length) {
-
-            if (changed) {
-                i = 0
-                changed = false
-                length = length - 1
-            }
-        }
-
-        setTimeout(stepCallback ? stepCallback.bind(null, next, prevI, prevI + 1, changed) : next)
-    }
-
-    next()
-}
-
-function insertionSort(array, stepCallback) {
-
-    const length = array.length;
-    let i = 1
-    let j = 1
-
-    function next() {
-
-        if (i > length) {
-            return
-        }
-
-        let prevJ = j;
-        let changed = false;
-
-        if (array[j] > array[j - 1]) {
-
-            // swap can be simplified
-            [array[j], array[j - 1]] = [array[j - 1], array[j]]
-
-            changed = true
-
-            if (--j < 1) {
-                j = ++i
-            }
-
-        } else {
-
-            j = ++i
-        }
-
-        setTimeout(stepCallback ? stepCallback.bind(null, next, prevJ, prevJ - 1, changed): next)
-    }
-
-    next()
 }
 
 function generateArrayOfNumbers(size) {
