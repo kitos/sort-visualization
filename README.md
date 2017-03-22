@@ -6,4 +6,4 @@
 * Insertion sort
 
 ## Demo
-[Can be found here](https://cdn.rawgit.com/kitos/sort-visualization/38b11ed5/index.html)
+[Can be found here](https://cdn.rawgit.com/kitos/sort-visualization/577bf65a/index.html)
