@@ -1,10 +1,21 @@
+const CANVAS_SIZE = 400;
 
-initSorting('bubble', bubbleSort)
-initSorting('insert', insertionSort)
+initSorting('Bubble sort', bubbleSort)
+initSorting('Insert sort', insertionSort)
 
-function initSorting(canvasId, sortingFunction) {
+function initSorting(sortingTitle, sortingFunction) {
 
-    let canvas = document.getElementById(canvasId)
+    const wrapper = document.createElement('div')
+    const title = document.createElement('h2')
+    const canvas = document.createElement('canvas')
+
+    title.innerHTML = sortingTitle
+    canvas.width = canvas.height = CANVAS_SIZE
+    canvas.style.padding = '10px'
+
+    wrapper.appendChild(title)
+    wrapper.appendChild(canvas)
+    document.getElementById('container').appendChild(wrapper)
 
     if (canvas.getContext) {
         let ctx = canvas.getContext('2d')
@@ -13,7 +24,7 @@ function initSorting(canvasId, sortingFunction) {
 
         ctx.fillStyle = 'rgb(200, 0, 0)'
 
-        const RADIUS = 200
+        const RADIUS = CANVAS_SIZE / 2 - 1
         ctx.beginPath()
         ctx.arc(centerX, centerY, RADIUS, 0, 2 * Math.PI, false)
         ctx.stroke()
